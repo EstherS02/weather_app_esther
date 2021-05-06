@@ -60,20 +60,14 @@ app.put('/student/:id',(req,res)=>{
 });
 
 app.get('/weather',function(req,res){
-    geocode(req.query.city, (err, result)=>{
-        if(err){
-            res.status(500).send(err);
-            return;
-        }
-        forcast(result,(err, result2)=>{
-            if(err){
-                res.status(500).send(err);
-                return;
-            }
-            res.status(200).send({
-                "forcast": result2
-            });
-        })
+    geocode(req.query.city).then((result)=>{
+        return forcast(result);
+    }).then((result2)=>{
+        res.status(200).send({
+            "forcast": result2
+        });
+    }).catch((err)=>{
+        res.status(500).send(err);
     })
 });
 
