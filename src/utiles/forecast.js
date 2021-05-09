@@ -10,7 +10,6 @@ const forcast = (result) => {
                 reject("Internet Problem");
             }
             var temp = JSON.parse(body);
-            console.log(temp);
             resolve(temp.current.weather_descriptions[0])
         });
     })

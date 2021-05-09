@@ -16,7 +16,6 @@ const geocode = (city)=>{
                 logitute : temp.features[0].center[0],
                 latitude: temp.features[0].center[1]
             }
-
             resolve(tempObj);
         })
     })
